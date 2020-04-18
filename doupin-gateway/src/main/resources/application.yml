@@ -1,0 +1,31 @@
+server:
+  port: 8201
+spring:
+  application:
+    name: doupin-gateway
+  profiles:
+    active: dev
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true #使用小写service-id
+      routes:
+      - id: user-a
+        uri: lb://user-a
+        predicates:
+          - Path=/render/**
+        filters:
+          - StripPrefix=0
+management: #开启SpringBoot Admin的监控
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
