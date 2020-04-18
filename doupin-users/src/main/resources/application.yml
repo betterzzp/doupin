@@ -1,0 +1,38 @@
+server:
+  port: 8000
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: ZhouMySecret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: ZhouBearer  #JWT负载中拿到开头
+  
+logging:
+  level:
+    root: info #日志配置DEBUG,INFO,WARN,ERROR
+    com.zhouzhongping.cn: debug
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+      active: dev #使用本地配置，要使用git存储改为git即可
+  application:
+    name: User-A
+  datasource:
+    url: jdbc:mysql://localhost:3306/doupin?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: root
+    druid:
+      initial-size: 100 #连接池初始化大小
+      min-idle: 100 #最小空闲连接数
+      max-active: 100 #最大连接数
+      web-stat-filter:
+        exclusions: "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*" #不统计这些请求数据
+      stat-view-servlet: #访问监控网页的登录用户名和密码
+        login-username: druid
+        login-password: druid

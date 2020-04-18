@@ -6,11 +6,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>doupin-users</module>
-        <module>common</module>
-        <module>msg</module>
-    <module>doupin-discover</module>
-    <module>config</module>
-    <module>doupin-gateway</module>
+        <module>doupin-common</module>
+		<module>doupin-discover</module>
+		<module>doupin-config</module>
+		<module>doupin-gateway</module>
   </modules>
     <packaging>pom</packaging>
     <parent>
